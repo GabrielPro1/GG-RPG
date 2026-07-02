@@ -1,3 +1,12 @@
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+    res.send("GG RPG ONLINE 🚀");
+});
+
+app.listen(process.env.PORT || 3000);
+
 const {
     default: makeWASocket,
     useMultiFileAuthState,
