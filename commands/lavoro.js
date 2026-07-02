@@ -1,147 +1,36 @@
-const {
-
-    loadUsers,
-    saveUsers,
-    createUser
-
-} = require("../lib/database");
-
-
-const {
-    checkCooldown
-} = require("../lib/cooldown");
-
-
+const getContext = require("../lib/context");
+const { work } = require("../lib/economy");
+const { addXP } = require("../lib/database");
 
 module.exports = {
 
+name: "lavoro",
 
-name:"lavoro",
+execute: async (sock, msg) => {
 
+    const ctx = getContext(msg);
 
+    const result = work(ctx.sender);
 
-execute: async(sock,msg)=>{
+    if (!result.ok) {
 
+        const min = Math.ceil(result.remaining / 60000);
 
-    const id =
-    msg.key.remoteJid;
-
-
-    const user =
-    createUser(id);
-
-
-
-    const wait =
-    checkCooldown(
-        user,
-        "lavoro",
-        60000
-    );
-
-
-
-    if(wait > 0){
-
-
-        await sock.sendMessage(
-
-            id,
-
-            {
-                text:
-`💼 Sei stanco!
-
-Aspetta ${wait} secondi.`
-            }
-
-        );
-
-
-        return;
-
+        return sock.sendMessage(ctx.chat, {
+            text: `⏳ Sei stanco!\nRiprova tra ~${min} minuti.`
+        });
     }
 
+    addXP(ctx.sender, 20);
 
+    await sock.sendMessage(ctx.chat, {
+        text:
+`💼 LAVORO COMPLETATO!
 
-
-
-    const lavori = [
-
-
-        "Hai riparato una nave 🚢",
-
-        "Hai tagliato legna 🌲",
-
-        "Hai aiutato un mercante 🛒",
-
-        "Hai trovato un tesoro nascosto 💎"
-
-    ];
-
-
-
-    const lavoro =
-    lavori[
-        Math.floor(
-            Math.random()*lavori.length
-        )
-    ];
-
-
-
-    const guadagno =
-    Math.floor(
-        Math.random()*100
-    ) + 50;
-
-
-
-
-
-    user.ggc += guadagno;
-
-    user.xp += 5;
-
-
-
-    const users =
-    loadUsers();
-
-
-    users[id] = user;
-
-
-    saveUsers(users);
-
-
-
-
-    await sock.sendMessage(
-
-        id,
-
-        {
-            text:
-`💼 LAVORO
-
-${lavoro}
-
-
-💰 Guadagno:
-${guadagno} GGC
-
-
-✨ +5 XP
-
-💳 Saldo:
-${user.ggc} GGC`
-        }
-
-    );
-
+💰 +${result.reward} GGC
+✨ +20 XP`
+    });
 
 }
-
 
 };

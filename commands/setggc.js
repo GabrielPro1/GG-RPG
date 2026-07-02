@@ -1,9 +1,9 @@
 const getContext = require("../lib/context");
-const { addMoney } = require("../lib/database");
+const { setMoney } = require("../lib/database");
 
 module.exports = {
 
-name: "giveggc",
+name: "setggc",
 
 execute: async (sock, msg) => {
 
@@ -16,26 +16,22 @@ execute: async (sock, msg) => {
     }
 
     const target = ctx.target;
-    let amount = Number(ctx.args[0]);
+    const amount = Number(ctx.args[0]);
 
     if (isNaN(amount)) {
         return sock.sendMessage(ctx.chat, {
-            text: "💰 Uso: /giveggc @utente quantità"
+            text: "💰 Uso: /setggc @utente quantità"
         });
     }
 
-    // 🔥 SE NEGATIVO → TOGLIE SOLDI
-    const result = addMoney(target, amount);
-
-    const action = amount >= 0 ? "aggiunti" : "rimossi";
+    const result = setMoney(target, amount);
 
     await sock.sendMessage(ctx.chat, {
         text:
-`⚙️ GGC MODIFICATI
+`🧾 SALDO IMPOSTATO
 
 👤 Target: ${target.split("@")[0]}
-💰 ${Math.abs(amount)} GGC ${action}
-💳 Nuovo saldo: ${result} GGC`
+💰 Nuovo saldo: ${result} GGC`
     });
 
 }

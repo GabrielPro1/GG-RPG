@@ -1,0 +1,23 @@
+[
+  {
+    "id": "bait",
+    "name": "Esca Base",
+    "price": 200,
+    "type": "boost",
+    "description": "+10% probabilità pesca rara"
+  },
+  {
+    "id": "rod",
+    "name": "Canna Migliorata",
+    "price": 1000,
+    "type": "boost",
+    "description": "+20% valore pesci"
+  },
+  {
+    "id": "potion_hp",
+    "name": "Pozione HP",
+    "price": 500,
+    "type": "heal",
+    "description": "Ripristina HP"
+  }
+]

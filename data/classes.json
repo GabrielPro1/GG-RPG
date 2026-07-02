@@ -1,0 +1,29 @@
+[
+  {
+    "id": "fisher",
+    "name": "Pescatore",
+    "bonus": {
+      "fishValue": 1.2,
+      "xpBonus": 1.1
+    },
+    "description": "Più guadagni dalla pesca"
+  },
+  {
+    "id": "worker",
+    "name": "Lavoratore",
+    "bonus": {
+      "workBonus": 1.3,
+      "xpBonus": 1.1
+    },
+    "description": "Più soldi dal lavoro"
+  },
+  {
+    "id": "merchant",
+    "name": "Mercante",
+    "bonus": {
+      "shopDiscount": 0.9,
+      "sellBonus": 1.2
+    },
+    "description": "Compra e vendi meglio"
+  }
+]

@@ -1,59 +1,30 @@
 {
-    "120363411564992986@g.us": {
-        "id": "120363411564992986@g.us",
-        "nome": "Avventuriero",
-        "ggc": 624,
-        "level": 1,
-        "xp": 10,
-        "inventario": [],
-        "pesci": [],
-        "statistiche": {
-            "pescati": 0,
-            "venduti": 0,
-            "guadagnati": 0
-        },
-        "cooldown": {
-            "pesca": 0,
-            "lavoro": 0,
-            "daily": 1782971761370
-        }
-    },
-    "89292839878717@lid": {
-        "id": "89292839878717@lid",
-        "nome": "Avventuriero",
-        "ggc": 200,
-        "level": 1,
-        "xp": 0,
-        "inventario": [],
-        "pesci": [],
-        "statistiche": {
-            "pescati": 0,
-            "venduti": 0,
-            "guadagnati": 0
-        },
-        "cooldown": {
-            "pesca": 0,
-            "lavoro": 0,
-            "daily": 0
-        }
-    },
-    "206270602735841@lid": {
-        "id": "206270602735841@lid",
-        "nome": "Avventuriero",
-        "ggc": 200,
-        "level": 1,
-        "xp": 0,
-        "inventario": [],
-        "pesci": [],
-        "statistiche": {
-            "pescati": 0,
-            "venduti": 0,
-            "guadagnati": 0
-        },
-        "cooldown": {
-            "pesca": 0,
-            "lavoro": 0,
-            "daily": 0
-        }
+  "_version": 2,
+  "users": {
+    "89292839878717@s.whatsapp.net": {
+      "id": "89292839878717@s.whatsapp.net",
+      "nickname": "",
+      "ggc": 100,
+      "bank": 0,
+      "level": 1,
+      "xp": 0,
+      "hp": 100,
+      "maxHp": 100,
+      "class": "none",
+      "inventory": {},
+      "fish": {},
+      "daily": {
+        "last": 0,
+        "streak": 0
+      },
+      "work": {
+        "last": 0
+      },
+      "stats": {
+        "fishCaught": 0,
+        "moneyEarned": 0,
+        "commandsUsed": 0
+      }
     }
+  }
 }

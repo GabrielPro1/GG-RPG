@@ -1,122 +1,37 @@
-const {
-
-    loadUsers,
-    saveUsers,
-    createUser
-
-} = require("../lib/database");
-
-
-const {
-    checkCooldown
-} = require("../lib/cooldown");
-
-
+const getContext = require("../lib/context");
+const { claimDaily } = require("../lib/economy");
+const { addXP } = require("../lib/database");
 
 module.exports = {
 
+name: "daily",
 
-name:"daily",
+execute: async (sock, msg) => {
 
+    const ctx = getContext(msg);
 
+    const result = claimDaily(ctx.sender);
 
-execute: async(sock,msg)=>{
+    if (!result.ok) {
 
+        const hoursLeft = Math.ceil(result.remaining / 3600000);
 
-    const id =
-    msg.key.remoteJid;
-
-
-    const user =
-    createUser(id);
-
-
-
-    const wait =
-    checkCooldown(
-        user,
-        "daily",
-        86400000
-    );
-
-
-
-    if(wait > 0){
-
-
-        await sock.sendMessage(
-
-            id,
-
-            {
-                text:
-`⏳ Hai già ritirato il daily!
-
-Torna tra:
-${wait} secondi`
-            }
-
-        );
-
-
-        return;
-
+        return sock.sendMessage(ctx.chat, {
+            text: `⏳ Hai già riscattato il daily!\nRiprova tra ~${hoursLeft} ore.`
+        });
     }
 
+    addXP(ctx.sender, 50);
 
+    await sock.sendMessage(ctx.chat, {
+        text:
+`🎁 DAILY RISCOSSO!
 
-
-
-    const premio =
-    Math.floor(
-        Math.random()*200
-    ) + 100;
-
-
-
-    user.ggc += premio;
-
-
-    user.xp += 10;
-
-
-
-    const users =
-    loadUsers();
-
-
-
-    users[id] = user;
-
-
-    saveUsers(users);
-
-
-
-
-    await sock.sendMessage(
-
-        id,
-
-        {
-            text:
-`🎁 DAILY GG RPG
-
-Hai ricevuto:
-
-💰 ${premio} GGC
-
-✨ +10 XP
-
-
-💳 Saldo:
-${user.ggc} GGC`
-        }
-
-    );
-
+💰 +${result.reward} GGC
+🔥 Streak: ${result.streak}
+✨ +50 XP`
+    });
 
 }
-
 
 };

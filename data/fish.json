@@ -1,50 +1,7 @@
 [
-    {
-        "nome": "Carpa",
-        "rarita": "Comune",
-        "valore": 10,
-        "probabilita": 40
-    },
-
-    {
-        "nome": "Trota",
-        "rarita": "Comune",
-        "valore": 20,
-        "probabilita": 25
-    },
-
-    {
-        "nome": "Salmone",
-        "rarita": "Non Comune",
-        "valore": 65,
-        "probabilita": 15
-    },
-
-    {
-        "nome": "Tonno",
-        "rarita": "Raro",
-        "valore": 150,
-        "probabilita": 9
-    },
-
-    {
-        "nome": "Pesce Palla",
-        "rarita": "Epico",
-        "valore": 400,
-        "probabilita": 6
-    },
-
-    {
-        "nome": "Kraken",
-        "rarita": "Mitico",
-        "valore": 1500,
-        "probabilita": 4
-    },
-
-    {
-        "nome": "Leviatano",
-        "rarita": "Leggendario",
-        "valore": 10000,
-        "probabilita": 1
-    }
+  { "name": "Pesce Comune", "rarity": "common", "value": 50, "chance": 50 },
+  { "name": "Pesce Raro", "rarity": "rare", "value": 150, "chance": 25 },
+  { "name": "Pesce Epico", "rarity": "epic", "value": 400, "chance": 15 },
+  { "name": "Pesce Mitico", "rarity": "mythic", "value": 900, "chance": 8 },
+  { "name": "Pesce Leggendario", "rarity": "legendary", "value": 2000, "chance": 2 }
 ]

@@ -1,6 +1,6 @@
 const getContext = require("../lib/context");
-
-const { createUser } = require("../lib/database");
+const { getUser } = require("../lib/database");
+const { getClass } = require("../lib/classes");
 
 module.exports = {
 
@@ -10,22 +10,33 @@ execute: async (sock, msg) => {
 
     const ctx = getContext(msg);
 
-    const user = createUser(ctx.target);
+    const user = getUser(ctx.target);
 
-    const testo =
-`
-👤 PROFILO
+    const userClass = getClass(ctx.target);
 
-ID: ${ctx.target}
+    const needed = user.level * 100;
+
+    const text =
+`╔══════ GG RPG ══════╗
+
+👤 ID: ${user.id}
+
+🧬 Classe: ${userClass ? userClass.name : "Nessuna"}
+
 💰 GGC: ${user.ggc}
-⭐ XP: ${user.xp}
-🎮 Livello: ${user.level}
-🐟 Pesci: ${user.pesci.length}
-`;
+🏦 Bank: ${user.bank}
 
-    await sock.sendMessage(ctx.chat, {
-        text: testo
-    });
+⭐ Livello: ${user.level}
+✨ XP: ${user.xp}/${needed}
+
+❤️ HP: ${user.hp}/${user.maxHp}
+
+🎒 Inventario: ${Object.keys(user.inventory).length}
+🐟 Pesci: ${Object.keys(user.fish).length}
+
+╚═══════════════════╝`;
+
+    await sock.sendMessage(ctx.chat, { text });
 
 }
 

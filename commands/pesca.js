@@ -1,133 +1,31 @@
-const fs = require("fs");
-
-const {
-    loadUsers,
-    saveUsers,
-    createUser
-} = require("../lib/database");
-
-
-const {
-    scegliPesce
-} = require("../lib/random");
-
-
-
-
+const getContext = require("../lib/context");
+const { fish } = require("../lib/fishing");
+const { addMoney, addXP } = require("../lib/database");
 
 module.exports = {
 
+name: "pesca",
 
-name:"pesca",
+execute: async (sock, msg) => {
 
+    const ctx = getContext(msg);
 
+    const result = fish(ctx.sender);
 
+    addMoney(ctx.sender, result.value);
+    addXP(ctx.sender, 10);
 
-execute: async(sock,msg)=>{
+    await sock.sendMessage(ctx.chat, {
+        text:
+`🎣 PESCA!
 
+🐟 Hai pescato: ${result.name}
+⭐ Rarità: ${result.rarity}
+💰 Valore: ${result.value} GGC
 
-    const id =
-    msg.key.remoteJid;
-
-
-
-    const user =
-    createUser(id);
-
-
-
-    const pesci =
-    JSON.parse(
-
-        fs.readFileSync(
-            "./data/fish.json"
-        )
-
-    );
-
-
-
-    const pesce =
-    scegliPesce(pesci);
-
-
-
-
-
-    user.pesci.push({
-
-        nome: pesce.nome,
-
-        rarita: pesce.rarita,
-
-        valore: pesce.valore
-
+✨ +10 XP`
     });
 
-
-
-    user.xp += 5;
-
-
-
-    const users =
-    loadUsers();
-
-
-
-    users[id] = user;
-
-
-
-    saveUsers(users);
-
-
-
-
-
-
-    const testo =
-
-`🎣 GG RPG PESCA
-
-Hai lanciato la lenza...
-
-🌊
-
-Hai trovato:
-
-🐟 ${pesce.nome}
-
-
-⭐ Rarità:
-${pesce.rarita}
-
-
-💰 Valore:
-${pesce.valore} GGC
-
-
-✨ +5 XP
-
-Il pesce è stato aggiunto allo zaino!`;
-
-
-
-
-
-await sock.sendMessage(
-
-    id,
-
-    {
-        text:testo
-    }
-
-);
-
-
-
 }
-
 
 };

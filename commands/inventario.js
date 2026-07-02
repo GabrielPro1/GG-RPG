@@ -1,102 +1,46 @@
-const {
-    createUser
-} = require("../lib/database");
-
-
+const getContext = require("../lib/context");
+const { getUser } = require("../lib/database");
 
 module.exports = {
 
+name: "inventario",
 
-name:"inventario",
+execute: async (sock, msg) => {
 
+    const ctx = getContext(msg);
 
+    const user = getUser(ctx.sender);
 
-execute: async(sock,msg)=>{
+    let text = "🎒 INVENTARIO\n\n";
 
+    text += "🐟 PESCI:\n";
 
-    const id =
-    msg.key.remoteJid;
+    let fishEmpty = true;
 
-
-
-    const user =
-    createUser(id);
-
-
-
-    let testo =
-`
-🎒 INVENTARIO GG RPG
-
-━━━━━━━━━━
-
-`;
-
-
-
-    if(user.pesci.length === 0){
-
-
-        testo +=
-`Non hai ancora pescato nulla 🐟
-
-Vai a pescare con:
-
-/pesca`;
-
-
-
-    } else {
-
-
-
-        user.pesci.forEach(
-            (pesce,index)=>{
-
-
-            testo +=
-`
-${index + 1}) 🐟 ${pesce.nome}
-
-⭐ ${pesce.rarita}
-
-💰 ${pesce.valore} GGC
-
-`;
-
-        });
-
-
-        testo +=
-`
-━━━━━━━━━━
-
-Totale pesci:
-${user.pesci.length}
-
-Usa /vendipesce per vendere tutto.
-`;
-
-
-
+    for (let f in user.fish) {
+        if (user.fish[f] > 0) {
+            text += `- ${f} x${user.fish[f]}\n`;
+            fishEmpty = false;
+        }
     }
 
+    if (fishEmpty) text += "Nessun pesce\n";
 
+    text += "\n🧰 OGGETTI:\n";
 
+    let itemEmpty = true;
 
-
-    await sock.sendMessage(
-
-        id,
-
-        {
-            text:testo
+    for (let i in user.inventory) {
+        if (user.inventory[i] > 0) {
+            text += `- ${i} x${user.inventory[i]}\n`;
+            itemEmpty = false;
         }
+    }
 
-    );
+    if (itemEmpty) text += "Nessun oggetto\n";
 
+    await sock.sendMessage(ctx.chat, { text });
 
 }
-
 
 };
