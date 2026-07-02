@@ -1,0 +1,50 @@
+[
+    {
+        "nome": "Carpa",
+        "rarita": "Comune",
+        "valore": 10,
+        "probabilita": 40
+    },
+
+    {
+        "nome": "Trota",
+        "rarita": "Comune",
+        "valore": 20,
+        "probabilita": 25
+    },
+
+    {
+        "nome": "Salmone",
+        "rarita": "Non Comune",
+        "valore": 65,
+        "probabilita": 15
+    },
+
+    {
+        "nome": "Tonno",
+        "rarita": "Raro",
+        "valore": 150,
+        "probabilita": 9
+    },
+
+    {
+        "nome": "Pesce Palla",
+        "rarita": "Epico",
+        "valore": 400,
+        "probabilita": 6
+    },
+
+    {
+        "nome": "Kraken",
+        "rarita": "Mitico",
+        "valore": 1500,
+        "probabilita": 4
+    },
+
+    {
+        "nome": "Leviatano",
+        "rarita": "Leggendario",
+        "valore": 10000,
+        "probabilita": 1
+    }
+]

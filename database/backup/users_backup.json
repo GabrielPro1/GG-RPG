@@ -1,0 +1,59 @@
+{
+    "120363411564992986@g.us": {
+        "id": "120363411564992986@g.us",
+        "nome": "Avventuriero",
+        "ggc": 624,
+        "level": 1,
+        "xp": 10,
+        "inventario": [],
+        "pesci": [],
+        "statistiche": {
+            "pescati": 0,
+            "venduti": 0,
+            "guadagnati": 0
+        },
+        "cooldown": {
+            "pesca": 0,
+            "lavoro": 0,
+            "daily": 1782971761370
+        }
+    },
+    "89292839878717@lid": {
+        "id": "89292839878717@lid",
+        "nome": "Avventuriero",
+        "ggc": 200,
+        "level": 1,
+        "xp": 0,
+        "inventario": [],
+        "pesci": [],
+        "statistiche": {
+            "pescati": 0,
+            "venduti": 0,
+            "guadagnati": 0
+        },
+        "cooldown": {
+            "pesca": 0,
+            "lavoro": 0,
+            "daily": 0
+        }
+    },
+    "206270602735841@lid": {
+        "id": "206270602735841@lid",
+        "nome": "Avventuriero",
+        "ggc": 200,
+        "level": 1,
+        "xp": 0,
+        "inventario": [],
+        "pesci": [],
+        "statistiche": {
+            "pescati": 0,
+            "venduti": 0,
+            "guadagnati": 0
+        },
+        "cooldown": {
+            "pesca": 0,
+            "lavoro": 0,
+            "daily": 0
+        }
+    }
+}
